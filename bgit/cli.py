@@ -2,13 +2,23 @@
 
 import argparse
 import git
+import os
 import sys
+import yaml
 
 exit_code = 0
 
 
 def read_repo_paths():
-    return ["~/bin", "~/org", "~/.config", "~/.doom.d"]
+    # TODO: do not hard code path
+    config_file = os.path.expanduser("~/.config/bgit/config.yaml")
+    try:
+        with open(config_file) as f:
+            config = yaml.safe_load(f)
+            return config["repos"]
+    except:
+        print("Failed to read", config_file, file=sys.stderr)
+        exit(1)
 
 
 def show_status():
@@ -23,8 +33,8 @@ def show_status():
                     print("\t", item)
             else:
                 print(path, "(clean)")
-        except git.exc.InvalidGitRepositoryError:
-            print(path, "(invalid)", file=sys.stderr)
+        except:
+            print(path, "(error)", file=sys.stderr)
             exit_code = 1
 
 
