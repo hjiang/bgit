@@ -9,7 +9,7 @@ setup(
     author="Hong Jiang",
     author_email="j@1byte.io",
     packages=find_packages(exclude=["tests*"]),
-    install_requires=["gitpython"],
+    install_requires=["gitpython", "pyyaml"],
     entry_points={
         "console_scripts": [
             "bgit = bgit.cli:main",

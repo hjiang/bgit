@@ -8,10 +8,13 @@ import yaml
 
 exit_code = 0
 
+def config_home():
+    return os.environ['XDG_CONFIG_HOME'] or os.path.expanduser('~/.config')
+
 
 def read_repo_paths():
     # TODO: do not hard code path
-    config_file = os.path.expanduser("~/.config/bgit/config.yaml")
+    config_file = os.path.join(config_home(), 'bgit', 'config.yaml')
     try:
         with open(config_file) as f:
             config = yaml.safe_load(f)
