@@ -9,7 +9,7 @@ import yaml
 exit_code = 0
 
 def config_home():
-    return os.environ['XDG_CONFIG_HOME'] or os.path.expanduser('~/.config')
+    return os.getenv('XDG_CONFIG_HOME') or os.path.expanduser('~/.config')
 
 
 def read_repo_paths():
