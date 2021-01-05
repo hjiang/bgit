@@ -13,7 +13,6 @@ def config_home():
 
 
 def read_repo_paths():
-    # TODO: do not hard code path
     config_file = os.path.join(config_home(), 'bgit', 'config.yaml')
     try:
         with open(config_file) as f:
